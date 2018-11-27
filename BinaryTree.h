@@ -386,10 +386,6 @@ void
 }
 
 //
-//
-//
-//
-
 long 
    BinaryTree:: size( const BinaryNode * subtree )
 {
@@ -402,10 +398,6 @@ long
 		return 1 + size(subtree->left_) + size(subtree->right_);
 	}
 }
-//
-//
-//
-//
 
 
 long 
