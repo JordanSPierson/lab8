@@ -8,7 +8,12 @@
 // cleaned for lab use
 // tom bailey   0820  18 oct 2010
 // tom bailey   0850  4 apr 2011
-
+//
+// ***************************
+// Edited by Jordan Pierson
+// COSC2030, Fall 2018
+// November 26th, 2018
+// ***************************
 
 #ifndef _BIN_TREE_H_
 #define _BIN_TREE_H_
@@ -107,6 +112,8 @@ public:
 
    std::vector< short > preorder() const;
 
+   std::vector< short > postorder() const;
+
 
 private:
    BinaryNode * tree_;
@@ -185,6 +192,10 @@ private:
    //   values in preorder.
    static void preorder( std::vector< short > & traversal, 
       const BinaryNode * subtree );
+
+   // New Code
+   static void postorder(std::vector< short > & traversal,
+	   const BinaryNode * subtree);
 };
 
 
@@ -287,6 +298,14 @@ std::vector< short >
    return traversal;
 }
 
+//new code
+std::vector< short > 
+BinaryTree::postorder() const
+{
+	std::vector< short > traversal;
+	postorder(traversal, tree_);
+	return traversal;
+}
 
 // code for helper functions
 
@@ -459,6 +478,18 @@ void
       preorder( traversal, subtree->left_ );
       preorder( traversal, subtree->right_ );
    }
+}
+
+void
+BinaryTree::postorder(std::vector< short > & traversal,
+	const BinaryNode * subtree)
+{
+	if (subtree != NULL)
+	{
+		postorder(traversal, subtree->left_);
+		postorder(traversal, subtree->right_);
+		traversal.push_back(subtree->entry_);
+	}
 }
 
 #endif
